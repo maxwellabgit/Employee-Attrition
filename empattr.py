@@ -17,27 +17,43 @@ losslist = rand.choices([1,0], weights=[attr_prob, 1-attr_prob], k=len(emplist))
 #finalize example employee database
 df = pd.DataFrame({'Emplid':emplist, 'Group':grouplist, 'Pay_Band':paybandlist, 'Loss':losslist})
 
-#calculate attrition rate
-attr_total = sum(df['Loss']) / len(df['Emplid'])
+#calculate attrition rates
+groups = {'A':0, 'B':0, 'C':0, 'D':0, 'E':0}
 
-#calculate attrition rate for subgroup
-attr_A = sum(np.where(df['Group']=='A',df['Loss'],0)) / sum(np.where(df['Group']=='A',1,0))
+for group in groups:
+    groups[group] = sum(np.where(df['Group']==group, df['Loss'],0)) / sum(np.where(df['Group']==group,1,0))
 
-
-#apply monte carlo simulation ('flip coin' for each employee in next time frame). The number of employees
-#is free to change, but the ratio is derived from previous time frames. The deciding factor in this forecasting model
-#is how we utilize the historical dataset in relation to my attrition ratio. In the real world, I would start with
-#a weighted average of previous time frames that weighs more recent time frames higher.
+#apply monte carlo simulation ('flip coin' for each employee in next time frame)
 y_total = []
 y_A = []
+y_B = []
+y_C = []
+y_D = []
+y_E = []
 
 for i in range(1,10001):
     y_total.append(sum(rand.choices([1,0], weights=[attr_prob, 1-attr_prob], k=len(df['Emplid']))))
     y_A.append(sum(rand.choices([1,0], weights=[attr_A, 1-attr_A], k=len(df['Emplid']))))
+    y_B.append(sum(rand.choices([1,0], weights=[attr_A, 1-attr_A], k=len(df['Emplid']))))
+    y_C.append(sum(rand.choices([1,0], weights=[attr_A, 1-attr_A], k=len(df['Emplid']))))
+    y_D.append(sum(rand.choices([1,0], weights=[attr_A, 1-attr_A], k=len(df['Emplid']))))
+    y_E.append(sum(rand.choices([1,0], weights=[attr_A, 1-attr_A], k=len(df['Emplid']))))
 
-
+#plot histograms one by one
 plt.hist(y_total)
 plt.show()
 
 plt.hist(y_A)
+plt.show()
+
+plt.hist(y_B)
+plt.show()
+
+plt.hist(y_C)
+plt.show()
+
+plt.hist(y_D)
+plt.show()
+
+plt.hist(y_E)
 plt.show()
