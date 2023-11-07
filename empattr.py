@@ -15,7 +15,7 @@ attr_prob = .03141592653
 losslist = rand.choices([1,0], weights=[attr_prob, 1-attr_prob], k=len(emplist))
 
 #finalize example employee database
-df = pd.DataFrame({'Emplid':emplist, 'Group':grouplist, 'Pay_Band':paybandlist, 'Loss':losslist})
+df = pd.DataFrame({'Emplid':emplist, 'Group':grouplist, 'Loss':losslist})
 
 #calculate attrition rates
 groups = {'A':0, 'B':0, 'C':0, 'D':0, 'E':0}
