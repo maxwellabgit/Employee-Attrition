@@ -1,8 +1,8 @@
 # Employee Attrition Using Monte Carlo Simulations
 ## Our goals in this project are:
 1. Understand how Monte Carlo Simulations work
-2. Create a Synthetic Employee Database
-3. Use Monte Carlo Methodology to Predict Attrition
+2. Create an example Employee Database
+3. Use Monte Carlo methodology to predict attrition
 
 This is a basic implementation of Monte Carlo methodology to forecast employee attrition. Statistical models are a respectable choice given the problem set. The advantages to this model over an ML classifier is firstly that this is a logic-driven methodology which can be easily explained or justified. Secondly, this implementation is fairly efficient, producing usable visualizations in minutes. Lastly, this is a good method to use in tandem with Machine Learning solutions, either as a baseline or to affect model weights.
 
