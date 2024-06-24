@@ -75,6 +75,8 @@ For each employee, flip a coin weighted 97:3 and record the outcome. Afterwards,
 
 ![After 500 iterations](https://github.com/maxwellabgit/Employee-Attrition/blob/main/Figure_3.png)
 
+500 iterations starts to look more like a normal distrubution. Pushing iterations up to 5000 gives us an even nicer bell curve with a peak around 3.14% attrition, or 31.4 attrited employees. Our confidence is determined by how close we are to the peak. I can have high confidence in our attrition rate being near 31.4, and low confidence towards the extremeties.
+
     for i in range(5000):
         y_iv.append(sum(rand.choices([1,0], weights=[attr_prob, 1-attr_prob], k=emps)))
     plt.hist(y_iv, bins=128)
